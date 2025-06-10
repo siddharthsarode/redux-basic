@@ -21,7 +21,7 @@ const cartSlice = createSlice({
         state.totalQuantity += 1;
       }
 
-      console.log("cart", state);
+      // console.log("cart", state);
     },
 
     increaseQuantity(state, action) {
