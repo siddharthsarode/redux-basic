@@ -1,6 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import { loadProducts, setLoading } from "./store/slices/productSlice";
+import {
+  fetchProduct,
+  loadProducts,
+  setLoading,
+} from "./store/slices/productSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -8,15 +12,17 @@ const App = () => {
   // dispatch api call
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({
-      type: "api/makeCall",
-      payload: {
-        url: "/products",
-        method: "GET",
-        onSuccess: loadProducts.type,
-        onStart: setLoading.type,
-      },
-    });
+    dispatch(fetchProduct());
+
+    // dispatch({
+    //   type: "api/makeCall",
+    //   payload: {
+    //     url: "/products",
+    //     method: "GET",
+    //     onSuccess: loadProducts.type,
+    //     onStart: setLoading.type,
+    //   },
+    // });
 
     // const res = fetch("https://fakestoreapi.com/products");
     // res
@@ -28,6 +34,10 @@ const App = () => {
     //   .catch((error) => {
     //     console.error("Error fetching products:", error);
     //   });
+
+    // dispatch(() => {
+    //   console.log("hello");
+    // });
   }, []);
 
   return (
